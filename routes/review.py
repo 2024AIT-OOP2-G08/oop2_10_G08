@@ -2,8 +2,17 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from models import Review, User, Product
 from datetime import datetime
 
+
+
 # Blueprintの作成
-review_bp = Blueprint('reveiw', __name__, url_prefix='/reveiws')
+review_bp = Blueprint('review', __name__, url_prefix='/reviews')
+
+
+
+@review_bp.route('/', methods=['GET', 'POST'])
+def list():
+    review = Review.select()
+    return render_template("review_list.html", title="レビュー", items = review)
 
 @review_bp.route('/add', methods=['GET', 'POST'])
 def add():
@@ -17,4 +26,4 @@ def add():
       
     users = User.select()
     products = Product.select()
-    return render_template('reviews_add.html', users=users, products=products)
+    return render_template('review_add.html', users=users, products=products)
