@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>レビュー</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <ul class="breadcrumb">
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('review.list') }}">注文一覧</a></li>
+    </ul>
+
+    <a href="{{ url_for('review.add') }}">レビュー追加</a>
+    <table>
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>製品名</th>
+                <th>レビュー</th>
+                <th>コメント</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in items %}
+            <tr>
+                <td><a href="{{ url_for('review.edit', review_id=review.id) }}">編集</a></td>
+                <td>{{ review.user.name }}</td>
+                <td>{{ review.product.name }}</td>
+                <td>{{ review.review_count }}</td>
+                <td>{{ review.review_comment }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
