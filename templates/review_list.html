@@ -19,7 +19,6 @@
     <table>
       <thead>
         <tr>
-          <th>&nbsp;</th>
           <th>ユーザー</th>
           <th>製品</th>
           <th>評価</th>
@@ -27,14 +26,12 @@
         </tr>
       </thead>
       <tbody>
-        {% for order in items %}
+        {% for review in items %}
         <tr>
-          <td>
-            <a href="{{ url_for('review.edit', review_id=review.id) }}">編集</a>
-          </td>
+
           <td>{{ review.user.name }}</td>
           <td>{{ review.product.name }}</td>
-          <td>{{ review.review_data }}</td>
+          <td>{{ review.review_count }}</td>
           <td>{{ review.review_comment }}</td>
         </tr>
         {% endfor %}

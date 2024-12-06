@@ -6,7 +6,7 @@ from .product import Product
 class Review(Model):
     user = ForeignKeyField(User, backref='reviews')
     product = ForeignKeyField(Product, backref='reviews')
-    review = IntegerField()  # int
+    review_count = IntegerField()  # int
     review_comment = TextField()  # str
 
     class Meta:
