@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>在庫編集</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
+</head>
+<body>
+    <h1>在庫を編集</h1>
+    <ul class="breadcrumb">
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('product.list') }}">在庫一覧</a></li>
+        <li>在庫編集</li>
+    </ul>
+
+    <form action="{{ url_for('inventory.edit', inventory_id=inventory.id) }}" method="post">
+        <label>製品名: <input type="text" name="name" value="{{ product.name }}" required></label><br>
+        <label>在庫数: <input type="number" step="1" name="quantity" value="{{ product.quantity }}" required></label><br>
+        <button type="submit">保存</button>
+    </form>
+</body>
+</html>
