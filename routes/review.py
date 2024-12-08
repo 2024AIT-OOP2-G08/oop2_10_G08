@@ -27,3 +27,21 @@ def add():
     users = User.select()
     products = Product.select()
     return render_template('review_add.html', users=users, products=products)
+
+@review_bp.route('/edit/<int:review_id>', methods=['GET', 'POST'])
+def edit(review_id):
+    review = Review.get_or_none(Review.id == review_id)
+    if not review:
+        return redirect(url_for('review.list'))
+
+    if request.method == 'POST':
+        review.user = request.form['user_id']
+        review.product = request.form['product_id']
+        review.review_count = request.form['review_count']
+        review.review_comment = request.form['review_comment']
+        review.save()
+        return redirect(url_for('review.list'))
+
+    users = User.select()
+    products = Product.select()
+    return render_template('review_edit.html', review=review, users=users, products=products)

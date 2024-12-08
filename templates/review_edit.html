@@ -2,37 +2,37 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>評価編集</title>
+    <title>レビュー編集</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
 </head>
 <body>
     <!-- ページタイトル -->
-    <h1>評価を編集</h1>
+    <h1>レビューを編集</h1>
     <ul class="breadcrumb">
         <li><a href="{{ url_for('index') }}">HOME</a></li>
-        <li><a href="{{ url_for('review.list') }}">評価一覧</a></li>
-        <li>評価を編集</li>
+        <li><a href="{{ url_for('review.list') }}">レビュー一覧</a></li>
+        <li>レビューを編集</li>
     </ul>
 
     <form action="{{ url_for('review.edit', review_id=review.id) }}" method="post">
-        <!-- ユーザー編集欄 -->
-        <label>ユーザー:
+        <!-- ユーザー選択 -->
+        <label>ユーザー: 
             <select name="user_id" required>
                 {% for user in users %}
-                    <option value="{{ user.id }}" {% if order.user.id == user.id %}selected{% endif %}>{{ user.name }}</option>
+                    <option value="{{ user.id }}">{{ user.name }}</option>
                 {% endfor %}
             </select>
         </label><br>
-        <!-- 製品名編集欄 -->
+        <!-- 製品選択 -->
         <label>製品: 
             <select name="product_id" required>
                 {% for product in products %}
-                    <option value="{{ product.id }}" {% if order.product.id == product.id %}selected{% endif %}>{{ product.name }}</option>
+                    <option value="{{ product.id }}">{{ product.name }}</option>
                 {% endfor %}
             </select>
         </label><br>
-        <!-- 評価5段階編集欄 -->
-        <label>評価: 
+        <!-- 評価選択 -->
+        <label>評価:
             <select name="review_count" required>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -41,12 +41,11 @@
                 <option value="5">5</option>
             </select>
         </label><br>
-        <!-- コメント文編集欄 -->
-        <label>コメント: 
+        <!-- コメント入力 -->
+        <label>コメント:
             <textarea name="review_comment" required></textarea>
         </label><br>
-        <!-- 保存ボタン -->
-        <button type="submit">保存</button>
+        <button type="submit">変更</button>
     </form>
 </body>
 </html>
