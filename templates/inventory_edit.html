@@ -13,7 +13,7 @@
         <li>在庫編集</li>
     </ul>
 
-    <form action="{{ url_for('inventory.edit', inventory_id=inventory.id) }}" method="post">
+    <form action="{{ url_for('inventory.edit', product_id=product.id) }}" method="post">
         <label>製品名: <input type="text" name="name" value="{{ product.name }}" required></label><br>
         <label>在庫数: <input type="number" step="1" name="quantity" value="{{ product.quantity }}" required></label><br>
         <button type="submit">保存</button>
