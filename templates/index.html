@@ -45,5 +45,23 @@
         </tfoot>
     </table>
     </ul>
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>製品</th>
+          <th>評価合計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.review_count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </body>
 </html>
