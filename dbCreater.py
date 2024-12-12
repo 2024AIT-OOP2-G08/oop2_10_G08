@@ -53,7 +53,7 @@ def generate_sample_data(record_count=500):
     for _ in range(20):  # 商品は100種類
         product = Product.create(
             name=fake.word(),
-            price=round(random.uniform(500, 20000), 2),
+            price=random.randint(1000, 50000),
             quantity=random.randint(0, 500)
         )
         products.append(product)
