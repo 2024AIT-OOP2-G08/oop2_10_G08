@@ -10,7 +10,7 @@ MODELS = [
     User,
     Product,
     Order,
-    Review
+    Review,
 ]
 
 # データベースの初期化関数
