@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <ul class="breadcrumb">
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('product.dashboard') }}">製品別売上ダッシュボード</a></li>
+    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>売り上げ順位</th>
+                <th>製品名</th>
+                <th>販売数</th>
+                <th>単価</th>
+                <th>売上額</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in sales_data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>¥{{ product.price }}</td>
+                <td>¥{{ product.sales_amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>合計売上額</strong></td>
+                <td>¥{{ sales_data | sum(attribute='sales_amount') }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

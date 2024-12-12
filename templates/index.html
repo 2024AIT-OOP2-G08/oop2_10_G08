@@ -16,6 +16,52 @@
       <li><a href="{{ url_for('order.list') }}">注文リスト</a></li>
       <li><a href="{{ url_for('review.list') }}">レビューリスト</a></li>
       <li><a href="{{ url_for('inventory.list') }}">在庫管理</a></li>
+      <table>
+        <thead>
+            <tr>
+                <th>売り上げ順位</th>
+                <th>製品名</th>
+                <th>販売数</th>
+                <th>単価</th>
+                <th>売上額</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in sales_data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>¥{{ product.price }}</td>
+                <td>¥{{ product.sales_amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>合計売上額</strong></td>
+                <td>¥{{ sales_data | sum(attribute='sales_amount') }}</td>
+            </tr>
+        </tfoot>
+    </table>
     </ul>
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>製品</th>
+          <th>評価合計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.review_count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </body>
 </html>
