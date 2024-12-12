@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+from peewee import fn  # 集計のために使用
 from models import Review, User, Product
 from datetime import datetime
 
@@ -9,10 +10,20 @@ review_bp = Blueprint('review', __name__, url_prefix='/reviews')
 
 
 
-@review_bp.route('/', methods=['GET', 'POST'])
+@review_bp.route('/', methods=['GET', 'post'])
 def list():
-    review = Review.select()
-    return render_template("review_list.html", title="レビュー", items = review)
+    # 製品ごとにレビュー数を集計
+    query = (
+        Review
+        .select(Product.name, fn.SUM(Review.review_count).alias('total_reviews'))
+        .join(Product, on=(Review.product_id == Product.id))
+        .group_by(Product.name)
+    )
+
+    # テンプレートで利用できるようにデータを準備
+    items = [{"name": row.product.name, "review_count": row.total_reviews} for row in query]
+
+    return render_template("review_list.html", title="レビュー一覧", items=items)
 
 @review_bp.route('/add', methods=['GET', 'POST'])
 def add():
