@@ -18,11 +18,13 @@ for blueprint in blueprints:
 @app.route('/')
 def index():
 
+    # 製品ごとにレビュー数を集計
     query = (
         Review
         .select(Product.name, fn.SUM(Review.review_count).alias('total_reviews'))
         .join(Product, on=(Review.product_id == Product.id))
         .group_by(Product.name)
+        .order_by(fn.SUM(Review.review_count).desc())
     )
 
     # テンプレートで利用できるようにデータを準備
