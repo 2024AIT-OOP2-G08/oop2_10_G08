@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>a</title>
+</head>
+<body>
+    <h1>a</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>製品名</th>
+                <th>価格</th>
+                <th>売上数</th>
+                <th>売上金額</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in sales_data %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }} 円</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.sales_amount }} 円</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
