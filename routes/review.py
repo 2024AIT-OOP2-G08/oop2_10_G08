@@ -10,7 +10,7 @@ review_bp = Blueprint('review', __name__, url_prefix='/reviews')
 
 
 
-@review_bp.route('/')
+@review_bp.route('/', methods=['GET', 'POST'])
 def list():
     # 製品ごとにレビュー数を集計
     query = (
@@ -23,7 +23,7 @@ def list():
     # テンプレートで利用できるようにデータを準備
     items = [{"name": row.product.name, "review_count": row.total_reviews} for row in query]
 
-    return render_template("review_list.html", title="レビュー一覧", items=items)
+    return render_template("index.html", title="レビュー一覧", items=items)
 
 @review_bp.route('/add', methods=['GET', 'POST'])
 def add():
