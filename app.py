@@ -33,10 +33,6 @@ def index():
             'price': price,
             'sales_amount': sales_amount
         })
-    
-#     return render_template('index.html', 
-#                          title='製品別売上ダッシュボード',
-#                          sales_data=sales_data)
 
 
     # 製品ごとにレビュー数を集計
@@ -79,7 +75,7 @@ def index():
 
 
     return render_template("index.html", 
-                           title="レビュー一覧", 
+                           sales_data=sales_data,
                            items=items,
                            monthly_sales=monthly_sales_display)
 
