@@ -18,34 +18,33 @@
       <li><a href="{{ url_for('inventory.list') }}">在庫管理</a></li>
       <table>
         <thead>
-            <tr>
-                <th>売り上げ順位</th>
-                <th>製品名</th>
-                <th>販売数</th>
-                <th>単価</th>
-                <th>売上額</th>
-            </tr>
+          <tr>
+            <th>売り上げ順位</th>
+            <th>製品名</th>
+            <th>販売数</th>
+            <th>単価</th>
+            <th>売上額</th>
+          </tr>
         </thead>
         <tbody>
-            {% for product in sales_data %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.quantity }}</td>
-                <td>¥{{ product.price }}</td>
-                <td>¥{{ product.sales_amount }}</td>
-            </tr>
-            {% endfor %}
+          {% for product in sales_data %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>¥{{ product.price }}</td>
+            <td>¥{{ product.sales_amount }}</td>
+          </tr>
+          {% endfor %}
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="3"><strong>合計売上額</strong></td>
-                <td>¥{{ sales_data | sum(attribute='sales_amount') }}</td>
-            </tr>
+          <tr>
+            <td colspan="3"><strong>合計売上額</strong></td>
+            <td>¥{{ sales_data | sum(attribute='sales_amount') }}</td>
+          </tr>
         </tfoot>
-    </table>
+      </table>
     </ul>
-
 
     <table>
       <thead>
@@ -59,6 +58,24 @@
         <tr>
           <td>{{ item.name }}</td>
           <td>{{ '%.2f' | format(item.review_count) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <table>
+      <h3>月刊売り上げ</h3>
+      <thead>
+        <tr>
+          <th>月</th>
+          <th>売り上げ</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for month in monthly_sales %}
+        <tr>
+          <td>{{ month.month }}</td>
+          <td>{{ month.total_sales }}</td>
         </tr>
         {% endfor %}
       </tbody>
