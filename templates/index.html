@@ -75,8 +75,8 @@
       <tbody>
         {% for month in monthly_sales %}
         <tr>
-          <td>{{ month.month }}</td>
-          <td>{{ month.total_sales }}</td>
+          <td>{{ month.month }}月</td>
+          <td>¥{{ month.total_sales }}</td>
         </tr>
         {% endfor %}
       </tbody>
