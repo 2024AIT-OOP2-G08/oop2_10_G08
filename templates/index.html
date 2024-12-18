@@ -58,7 +58,7 @@
         {% for item in items %}
         <tr>
           <td>{{ item.name }}</td>
-          <td>{{ item.review_count }}</td>
+          <td>{{ '%.2f' | format(item.review_count) }}</td>
         </tr>
         {% endfor %}
       </tbody>
