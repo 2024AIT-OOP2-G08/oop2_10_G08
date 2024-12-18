@@ -21,7 +21,7 @@ def index():
     sales_data = []
     products = Product.select()
 
-for product in products:
+    for product in products:
         # 各製品の売上数と価格を取得
         quantity_sold = product.quantity
         price = product.price
