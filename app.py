@@ -20,13 +20,12 @@ def index():
     # 今月の売上を計算
     sales_data = []
     products = Product.select()
-    
+
     for product in products:
         # 各製品の売上数と価格を取得
         quantity_sold = product.quantity
         price = product.price
         sales_amount = quantity_sold * price
-        
         sales_data.append({
             'name': product.name,
             'quantity': quantity_sold,
@@ -75,7 +74,6 @@ def index():
 
 
     return render_template("index.html", 
-                           sales_data=sales_data,
                            items=items,
                            monthly_sales=monthly_sales_display)
 
